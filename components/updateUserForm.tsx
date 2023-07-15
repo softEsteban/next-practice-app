@@ -17,7 +17,6 @@ const formReducer = (state: FormState, event: FormAction): FormState => {
     };
 };
 
-
 export default function UpdateUserForm() {
 
     const [formData, setFormData] = useReducer(formReducer, {});
@@ -31,7 +30,6 @@ export default function UpdateUserForm() {
         e.preventDefault();
         if (Object.keys(formData).length == 0) return console.log("Dont have form data!");
         console.log(formData)
-
     }
 
     if (Object.keys(formData).length > 0) return <Success message={"User added!"}></Success>

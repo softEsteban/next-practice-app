@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../../database/connection';
-import { getUsers, postUser, updateUser, deleteUser } from '../../../database/controller';
+import { getUser, updateUser, deleteUser } from '../../../database/controller';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     connectMongo()
@@ -10,13 +10,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     switch (method) {
         case 'GET':
-            getUsers(req, res);
+            getUser(req, res);
             break;
-        case 'POST':
-            postUser(req, res);
+        case 'PUT':
+            updateUser(req, res);
+            break;
+        case 'DELETE':
+            deleteUser(req, res);
             break;
         default:
-            res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
+            // res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
             res.status(405).end(`Method ${method}`);
             break;
     }
